@@ -1,0 +1,31 @@
+<form>
+  <div [hidden]="ajout">
+    <label>ID Marque</label>
+    <input
+      type="text"
+      [(ngModel)]="marque.idMar"
+      name="idMarque"
+      class="form-control w-25"
+    />
+  </div>
+  <div>
+    <label>Nom Marque</label>
+    <input
+      type="text"
+      [(ngModel)]="marque.nomMar"
+      name="nomMarque"
+      class="form-control"
+      placeholder="Entrez un nom de catégorie..."
+    />
+  </div>
+  <div class="mt-2">
+    <button
+      type="submit"
+      [disabled]="!marque.nomMar"
+      class="btn btn-success"
+      (click)="saveMarque()"
+    >
+      {{ ajout ? "Ajouter" : "Modifier" }}
+    </button>
+  </div>
+</form>

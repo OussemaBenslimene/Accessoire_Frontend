@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card shadow mt-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Lib Accessoire</th>
+          <th>Prix</th>
+          <th>Date Création</th>
+          <th>Marque</th>
+        </tr>
+        <tbody *ngFor="let accessoire of accessoires">
+          <tr>
+            <td>{{ accessoire.idAccessoire }}</td>
+            <td>{{ accessoire.libAccessoire }}</td>
+            <td>{{ accessoire.prixAccessoire }}</td>
+            <td>{{ accessoire.dateCreation | date : "dd/MM/yyyy" }}</td>
+            <td>{{ accessoire.marque?.nomMar }}</td>
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                class="btn btn-danger"
+                (click)="supprimerAccessoire(accessoire)"
+                >Supprimer</a
+              >
+            </td>
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                class="btn btn-success"
+                [routerLink]="['/updateAccessoire', accessoire.idAccessoire]"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
