@@ -25,18 +25,18 @@
           <a class="dropdown-item" href="#">Lister</a>
           <a class="dropdown-item"  routerLink="/rechercheParMarque" >Recherche Par Marque</a> 
           <a class="dropdown-item" routerLink="/rechercheParNom" >Recherche Par Nom</a>
-          <a class="dropdown-item" routerLink="/listeMarques" >Gestion des Marques</a>
+          <a  *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/listeMarques" >Gestion des Marques</a>
 
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ms-auto">
       <li> <a class="nav-link">{{authService.loggedUser}}</a></li> 
-      <li class="nav-item dropdown" ngbDropdown>
+      <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">
          Connexion
         </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
           <a *ngIf="!authService.isloggedIn"  class="dropdown-item" routerLink = "login">login</a>
           <a *ngIf="authService.isloggedIn" class="dropdown-item" (click) = "onLogout()">logout</a>
           <a class="dropdown-item" href="#">Profile</a>
