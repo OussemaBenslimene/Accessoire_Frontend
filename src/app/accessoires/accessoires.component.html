@@ -15,7 +15,7 @@
             <td>{{ accessoire.libAccessoire }}</td>
             <td>{{ accessoire.prixAccessoire }}</td>
             <td>{{ accessoire.dateCreation | date : "dd/MM/yyyy" }}</td>
-            <td>{{ accessoire.marque?.nomMar }}</td>
+            <td>{{ accessoire.marque.nomMar }}</td>
             <td>
               <a
                 *ngIf="authService.isAdmin()"

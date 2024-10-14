@@ -8,7 +8,7 @@ import { AccessoiresComponent } from './accessoires/accessoires.component';
 
 import { FormsModule } from '@angular/forms';
 import { UpdateAccessoireComponent } from './update-accessoire/update-accessoire.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { SearchFilterPipe } from './search-filter.pipe';
@@ -20,29 +20,20 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    AddAccessoireComponent,
-    AccessoiresComponent,
-    UpdateAccessoireComponent,
-    RechercheParMarqueComponent,
-    RechercheParNomComponent,
-    SearchFilterPipe,
-    ListeMarquesComponent,
-    UpdateMarqueComponent,
-    LoginComponent,
-    ForbiddenComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-   
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        AddAccessoireComponent,
+        AccessoiresComponent,
+        UpdateAccessoireComponent,
+        RechercheParMarqueComponent,
+        RechercheParNomComponent,
+        SearchFilterPipe,
+        ListeMarquesComponent,
+        UpdateMarqueComponent,
+        LoginComponent,
+        ForbiddenComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

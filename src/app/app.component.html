@@ -37,8 +37,8 @@
          Connexion
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-          <a *ngIf="!authService.isloggedIn"  class="dropdown-item" routerLink = "login">login</a>
-          <a *ngIf="authService.isloggedIn" class="dropdown-item" (click) = "onLogout()">logout</a>
+          <a *ngIf="!logged"  class="dropdown-item" routerLink = "login">login</a>
+          <a *ngIf="logged" class="dropdown-item" (click) = "onLogout()">logout</a>
           <a class="dropdown-item" href="#">Profile</a>
         </div>
       </li>
