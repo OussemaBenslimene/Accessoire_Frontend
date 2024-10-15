@@ -82,6 +82,7 @@ export class AuthService {
                      this.token= undefined!;
                      this.isloggedIn = false;
                      localStorage.removeItem('jwt');
+                     localStorage.removeItem('isLoggedIn');
                      this.router.navigate(['/login']);
                      }
                    
