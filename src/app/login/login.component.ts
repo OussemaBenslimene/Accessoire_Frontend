@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   user = new User();
   err : number = 0;
+  message : string ="login ou mot de passe erronés..";
 
   constructor(private authService : AuthService,
               private router: Router) { }
@@ -28,7 +29,9 @@ export class LoginComponent {
         },
         error: (err: any) => {
           console.log("err "+err);
-        this.err = 1; 
+          this.err = 1; 
+          if (err.error.errorCause=="disabled")
+            this.message = "L'utilisateur est désactivé !";
         }
         });
 

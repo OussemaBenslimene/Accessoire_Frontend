@@ -4,6 +4,7 @@ import { Accessoire } from '../model/accessoire.model';
 import { AccessoireService } from '../services/accessoire.service';
 import { Marque } from '../model/marque.model';
 import { Router } from '@angular/router';
+import { Image } from '../model/image.model';
 
 @Component({
   selector: 'app-add-accessoire',
@@ -17,7 +18,11 @@ export class AddAccessoireComponent implements OnInit {
 
   newAccessoire = new Accessoire();
 
-  constructor(private accService: AccessoireService, private router: Router) {}
+
+  uploadedImage!: File;
+  imagePath: any;
+
+  constructor(private accService: AccessoireService, private router: Router) { }
   ngOnInit(): void {
     this.accService.listeMarques().subscribe((mar) => {
       console.log(mar);
@@ -26,12 +31,35 @@ export class AddAccessoireComponent implements OnInit {
   }
 
   addAccessoire() {
-    this.newAccessoire.marque = this.marques.find(
+    /*this.newAccessoire.marque = this.marques.find(
       (mar) => mar.idMar == this.newIdMar
     )!;
     this.accService.ajouterAccessoire(this.newAccessoire).subscribe((acc) => {
       console.log(acc);
       this.router.navigate(['accessoires']);
-    });
+    });*/
+    this.accService
+      .uploadImage(this.uploadedImage, this.uploadedImage.name)
+      .subscribe((img: Image) => {
+        this.newAccessoire.image = img;
+        this.newAccessoire.marque = this.marques.find(mar => mar.idMar
+          == this.newIdMar)!;
+        this.accService
+          .ajouterAccessoire(this.newAccessoire)
+          .subscribe(() => {
+            this.router.navigate(['accessoires']);
+          });
+      });
+
   }
+
+
+  //gestion des images
+  onImageUpload(event: any) {
+    this.uploadedImage = event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.uploadedImage);
+    reader.onload = (_event) => { this.imagePath = reader.result; }
+  }
+
 }

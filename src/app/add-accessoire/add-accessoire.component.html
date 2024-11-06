@@ -5,52 +5,34 @@
   <form>
     <div class="col-sm-2 col-md-2 col-lg-2">
       <label>ID Accessoire</label>
-      <input
-        type="text"
-        [(ngModel)]="newAccessoire.idAccessoire"
-        name="idAccessoire"
-        class="form-control"
-      />
+      <input type="text" [(ngModel)]="newAccessoire.idAccessoire" name="idAccessoire" class="form-control" />
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Libelle Accessoire</label>
-      <input
-        type="text"
-        [(ngModel)]="newAccessoire.libAccessoire"
-        name="libAccessoire"
-        class="form-control"
-      />
+      <input type="text" [(ngModel)]="newAccessoire.libAccessoire" name="libAccessoire" class="form-control" />
     </div>
     <div class="col-sm-2 col-md-2 col-lg-2">
       <label>Prix Accessoire</label>
-      <input
-        type="number"
-        [(ngModel)]="newAccessoire.prixAccessoire"
-        name="prixAccessoire"
-        class="form-control"
-      />
+      <input type="number" [(ngModel)]="newAccessoire.prixAccessoire" name="prixAccessoire" class="form-control" />
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Date création</label>
-      <input
-        type="date"
-        [(ngModel)]="newAccessoire.dateCreation"
-        name="dateCreation"
-        class="form-control"
-      />
+      <input type="date" [(ngModel)]="newAccessoire.dateCreation" name="dateCreation" class="form-control" />
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Marque</label>
-      <select
-        class="form-control form-control-lg"
-        id="idMar"
-        name="idMar"
-        [(ngModel)]="newIdMar"
-      >
+      <select class="form-control form-control-lg" id="idMar" name="idMar" [(ngModel)]="newIdMar">
         <option *ngFor="let mar of marques" [value]="mar.idMar">
           {{ mar.nomMar }}
         </option>
       </select>
+    </div>
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <label class="mb-2">Image :</label>
+      <input type="file" (change)="onImageUpload($event)" name="logo" class="form-control">
+    </div>
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <img [src]="imagePath" class="card-img-top img-fluid rounded-start" style="width: 500px; height: 300px" />
     </div>
     <div class="mt-2">
       <button type="submit" (click)="addAccessoire()" class="btn btn-success">

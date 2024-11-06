@@ -1,4 +1,5 @@
 import { Marque } from "./marque.model";
+import { Image } from "./image.model";
 
 export class Accessoire {
     idAccessoire! : number;
@@ -6,5 +7,8 @@ export class Accessoire {
     prixAccessoire? : number;
     dateCreation? : Date ;
     marque! : Marque;
+    image! : Image
+    imageStr!:string
+    images!: Image[];
     }
     
